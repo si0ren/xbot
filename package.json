@@ -1,7 +1,7 @@
 {
-  "name": "Project Pemuda",
+  "name": "XBot",
   "version": "3.0.0",
-  "description": "Project-Pemuda",
+  "description": "XBot",
   "main": "node index",
   "directories": {
     "lib": "lib"
