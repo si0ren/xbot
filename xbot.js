@@ -420,11 +420,11 @@ const isAntiVO = isGroup ? antiviewonce.includes(from) : false
                 case 12: jamss = "Zuhur"; break;
                 case 13: jamss = "Sore"; break;
                 case 14: jamss = "Sore"; break;
-                case 15: jamss = "Asr"; break;
+                case 15: jamss = "Sore"; break;
                 case 16: jamss = "Sore"; break;
                 case 17: jamss = "Sore"; break;
-                case 18: jamss = "Maghrib"; break;
-                case 19: jamss = "Isha"; break;
+                case 18: jamss = "Malam"; break;
+                case 19: jamss = "Malam"; break;
                 case 20: jamss = "Malam"; break;
                 case 21: jamss = "Malam"; break;
                 case 22: jamss = "Malam"; break;
@@ -979,7 +979,7 @@ if (!isGroup && !isCmd && !command && !mek.key.fromMe && !autorespon) {
 numd = await fetchJson(`https://api.telnyx.com/anonymous/v2/number_lookup/${senderNumber}`, {method: 'get'})
 	simi = await fetchJson(`https://api.simsimi.net/v2/?text=${cmd}&lc=id`)
                      sami = simi.success
-                        xbot.sendMessage(from, `_${sami}_`, text, {thumbnail: ofrply, sendEphemeral: true, quoted:mek, contextInfo : {forwardingScore: 508, isForwarded: true}})
+                        xbot.sendMessage(from, `AUTO RESPON\n${sami}`, text, {thumbnail: ofrply, sendEphemeral: true, quoted:mek, contextInfo : {forwardingScore: 508, isForwarded: true}})
                       }
 if (!settings.autoread) {
 xbot.chatRead(from)
@@ -1062,8 +1062,8 @@ break
 				stst = stst.status == 401 ? '' : stst.status
   menu = `Hai Kak ${pushname}👋🏻!
 
-│🔖Status : ${isOwner ? 'Owner' : 'User'}
 ╭─⬣ 「 User Info 」 ⬣
+│🔖Status : ${isOwner ? 'Owner' : 'User'}
 │🔖Nama :pushname
 │🔖Bio : ${stst}
 │🔖Nomor : @${stod.split('@')[0]}
@@ -1248,6 +1248,7 @@ menu = `〔 🖼 𝐌𝐀𝐊𝐄𝐑 🖼〕
 > ⬡ ${prefix}wooden 「 text 」
 > ⬡ ${prefix}golden 「 text 」`
 katalog(menu)
+break
 case 'imagemaker':
 menu = `〔 🖼 𝐈𝐌𝐀𝐆𝐄 𝐌𝐀𝐊𝐄𝐑 🖼〕
 > ⬡ ${prefix}rip [gambar]
@@ -1267,6 +1268,9 @@ menu = `〔 🖼 𝐈𝐌𝐀𝐆𝐄 𝐌𝐀𝐊𝐄𝐑 🖼〕
 > ⬡ ${prefix}missionpassed [gambar]
 > ⬡ ${prefix}lwkh [gambar]
 > ⬡ ${prefix}spongebob [gambar]
+> ⬡ ${prefix}patrick [gambar]
+> ⬡ ${prefix}stonk [gambar]
+> ⬡ ${prefix}notstonk [gambar]
 > ⬡ ${prefix}dictator [gambar]
 > ⬡ ${prefix}deepfry [gambar]
 > ⬡ ${prefix}dungeon [gambar]
@@ -1359,7 +1363,6 @@ menu = `〔 🎮 𝐆𝐀𝐌𝐄 🎮〕
 〔 ⚙ 𝐓𝐎𝐎𝐋𝐒 ⚙〕
 > ⬡ ${prefix}toimg
 > ⬡ ${prefix}tomp3 [ reply video ]
-> ⬡ ${prefix}tomp4 [ reply sticker gif ]
 > ⬡ ${prefix}robot [ reply audio ]
 > ⬡ ${prefix}balik [ reply audio ]
 > ⬡ ${prefix}bass [ reply audio ]
@@ -2800,6 +2803,48 @@ case 'dungeon':
 	} else {
 	  reply('Foto Nya Mana Gan 🗿')
 	}
+	break
+case 'stonk':
+	var imgbb = require('imgbb-uploader')
+	if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+	  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+	  reply(mess.wait)
+	  owgi = await xbot.downloadAndSaveMediaMessage(ted)
+	  tels = body.slice(7)
+	  anu = await imgbb("520bd6f6209077d1777c2a4f20c509c2", owgi)
+	  hehe = await getBuffer(`https://hardianto.xyz/api/stonk?image=${anu.display_url}&apikey=hardianto`)
+	 xbot.sendMessage(from, hehe, image, {quoted:mek})
+	} else {
+	  reply('Foto Nya Mana Gan 🗿')
+	}
+	break
+case 'notstonk':
+	var imgbb = require('imgbb-uploader')
+	if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+	  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+	  reply(mess.wait)
+	  owgi = await xbot.downloadAndSaveMediaMessage(ted)
+	  tels = body.slice(7)
+	  anu = await imgbb("520bd6f6209077d1777c2a4f20c509c2", owgi)
+	  hehe = await getBuffer(`https://hardianto.xyz/api/not-stonk?image=${anu.display_url}&apikey=hardianto`)
+	 xbot.sendMessage(from, hehe, image, {quoted:mek})
+	} else {
+	  reply('Foto Nya Mana Gan 🗿')
+	}
+	break
+case 'patrick':
+	var imgbb = require('imgbb-uploader')
+	if ((isMedia && !mek.message.videoMessage || isQuotedImage) && args.length == 0) {
+	  ted = isQuotedImage ? JSON.parse(JSON.stringify(mek).replace('quotedM', 'm')).message.extendedTextMessage.contextInfo: mek
+	  reply(mess.wait)
+	  owgi = await xbot.downloadAndSaveMediaMessage(ted)
+	  tels = body.slice(7)
+	  anu = await imgbb("520bd6f6209077d1777c2a4f20c509c2", owgi)
+	  hehe = await getBuffer(`https://hardianto.xyz/api/knights/patrick?apikey=hardianto&pp=${anu.display_url}`)
+	 xbot.sendMessage(from, hehe, image, {quoted:mek})
+	} else {
+	  reply('Foto Nya Mana Gan 🗿')
+	}
 	break	
 // batas image maker
 case 'sharelock':
@@ -2966,28 +3011,28 @@ break
 case 'nuliskiri':
 if (!c) return reply('Textnya mana gan?')
 reply(mess.wait)
-kon = (`https://hardianto-chan.herokuapp.com/api/nuliskiri?text=${c}&apikey=hardianto`)
+kon = (`https://hardianto.xyz/api/nuliskiri?text=${c}&apikey=hardianto`)
 anu = await getBuffer(kon)
 xbot.sendMessage(from, anu, image, { quoted: mek, thumbnail: fs.readFileSync('./media/image/xbot.jpg')})
 break
 case 'nuliskanan':
 if (!c) return reply('Textnya mana gan?')
 reply(mess.wait)
-kon = (`https://hardianto-chan.herokuapp.com/api/nuliskanan?text=${c}&apikey=hardianto`)
+kon = (`https://hardianto.xyz/api/nuliskanan?text=${c}&apikey=hardianto`)
 anu = await getBuffer(kon)
 xbot.sendMessage(from, anu, image, { quoted: mek, thumbnail: fs.readFileSync('./media/image/xbot.jpg')})
 break
 case 'foliokanan':
 if (!c) return reply('Textnya mana gan?')
 reply(mess.wait)
-kon = (`https://hardianto-chan.herokuapp.com/api/foliokanan?text=${c}&apikey=hardianto`)
+kon = (`https://hardianto.xyz/api/foliokanan?text=${c}&apikey=hardianto`)
 anu = await getBuffer(kon)
 xbot.sendMessage(from, anu, image, { quoted: mek, thumbnail: fs.readFileSync('./media/image/xbot.jpg')})
 break
 case 'foliokiri':
 if (!c) return reply('Textnya mana gan?')
 reply(mess.wait)
-kon = (`https://hardianto-chan.herokuapp.com/api/foliokiri?text=${c}&apikey=hardianto`)
+kon = (`https://hardianto.xyz/api/foliokiri?text=${c}&apikey=hardianto`)
 anu = await getBuffer(kon)
 xbot.sendMessage(from, anu, image, { quoted: mek, thumbnail: fs.readFileSync('./media/image/xbot.jpg')})
 break
@@ -3477,7 +3522,7 @@ teks=`─ 「 *IMAGE TO URL* 」 ─
             case 'play':
          
                   if (args.length === 0) return reply(`Kirim perintah *${prefix}play* _Judul lagu yang akan dicari_`)
-         
+         reply(mess.wait)
                      var srch = args.join('')
                    aramas = await yts(srch);
                    aramat = aramas.all 
@@ -3522,7 +3567,191 @@ case "caklontong":
    xbot.sendMessage(from, cak, text, {quoted: mek }) // ur cods
    }, 0) // 1000 = 1s,
    break
-   
+case "susunkata":
+   anu = await fetchJson(`https://hardianto.xyz/api/susunkata?apikey=hardianto`)
+   susun = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, susun, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tebakkalimat":
+   anu = await fetchJson(`https://hardianto.xyz/api/tebakkalimat?apikey=hardianto`)
+   kalimat = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, kalimat, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tebakkata":
+   anu = await fetchJson(`https://hardianto.xyz/api/tebakkata?apikey=hardianto`)
+   kata = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, kata, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tebakkimia":
+   anu = await fetchJson(`https://hardianto.xyz/api/tebakkimia?apikey=hardianto`)
+   kimia = `*${anu.math.lambang}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.unsur, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, kimia, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tebaklirik":
+   anu = await fetchJson(`https://hardianto.xyz/api/tebaklirik?apikey=hardianto`)
+   lirik = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, lirik, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tebaktebakan":
+   anu = await fetchJson(`https://hardianto.xyz/api/tebaktebakan?apikey=hardianto`)
+   tebakan = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, tebakan, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "tekateki":
+   anu = await fetchJson(`https://hardianto.xyz/api/tekateki?apikey=hardianto`)
+   teki = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, teki, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "asahotak":
+   anu = await fetchJson(`https://hardianto.xyz/api/asahotak?apikey=hardianto`)
+   otak = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, otak, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+case "siapaaku":
+   anu = await fetchJson(`https://hardianto.xyz/api/siapaaku?apikey=hardianto`)
+   aku = `*${anu.math.soal}*`
+   setTimeout( () => {
+   reply('*➸ Jawaban :* '+anu.math.jawaban, text, {quoted: mek}) // ur cods
+   }, 30000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_10 Detik lagi…_', text) // ur cods
+   }, 20000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_20 Detik lagi_…', text) // ur cods
+   }, 10000) // 1000 = 1s,
+   setTimeout( () => {
+   reply('_30 Detik lagi_…', text) // ur cods
+   }, 2500) // 1000 = 1s,
+   setTimeout( () => {
+   xbot.sendMessage(from, aku, text, {quoted: mek }) // ur cods
+   }, 0) // 1000 = 1s,
+   break
+       case 'truth':
+              if (!isGroup) return reply(mess.only.group)
+              const trut =['Kapan terakhir kali kamu berbohong?','Kapan terakhir kali kamu menangis?','Kapan terakhir kali kamu kentut?','Apa ketakutan terbesarmu?','Apa fantasi terbesar atau terhanehmu?','pernah gak nyuri uang nyokap atau bokap? Alesanya?','hal yang bikin seneng pas lu lagi sedih apa','Pernahkah kamu selingkuh?','pernah jadi selingkuhan orang?','Apa hal terburuk yang pernah kamu lakukan?','siapa orang yang paling berpengaruh kepada kehidupanmu','hal membanggakan apa yang kamu dapatkan di tahun ini','Apa rahasia yang tidak pernah kamu ceritakan kepada siapapun?','Apakah kamu punya bakat terpendam?','Apakah kamu pernah melanggar hukum?','Apa hal paling memalukan yang pernah kamu lakukan? Kapan?','suka mabar(main bareng)sama siapa?','Apa hal yang paling membuatmu merasa insecure?','Sebutkan kejadian yang bikin kamu sakit hati yang masih di inget','pencapaian yang udah didapet apa aja ditahun ini?','Kesalahan terburuk apa yang pernah kamu lakukan?','Apa hal paling menjijikkan yang pernah kamu lakukan?','Hal terburuk apa yang pernah dilakukan orang terhadapmu?','Apa kebiasaan terburukmu?','Hal terburuk apa yang pernah kamu katakan/lakukan terhadap orang lain?','Apa penyesalan terburukmu?','Kalau kamu bisa jadi tidak terlihat, apa hal pertama yang akan kamu lakukan?','Apa rahasia yang kamu sembunyikan dari orangtuamu?','Siapa orang yang diam-diam kamu sukai?','Siapa orang terakhir yang kamu kepoin di media sosial?','Kalau ada jin yang memberikanmu tiga permohonan, apa yang kamu inginkan?','Siapa orang di antara kita yang menurutmu bisa lolos dari kiamat zombie dan siapa yang akan mati duluan? Beri tahu alasannya!','Apa tontonan favoritmu saat masih kecil?','Siapa orang yang paling sering kamu chat?','Apa kebohongan terbesar yang pernah kamu katakan kepada orangtuamu?','Apa mimpi paling aneh yang pernah kamu alami?','Kapan terakhir kali kamu ngompol?','Menurutmu, hewan apa yang terlihat paling mirip denganmu?','Apakah kamu pernah melakukan ghosting?','Apa aib yang kamu sembunyikan dari kami?']
+              const ttrth = trut[Math.floor(Math.random() * trut.length)]
+              truteh = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
+              pemuda.sendMessage(from, truteh, image, { caption: '*Truth*\n\n'+ ttrth, quoted: mek })
+              break
+       case 'dare':
+              if (!isGroup) return reply(mess.only.group)
+              const dare =['Lakukan rap gaya bebas selama 3 menit.','telfon crush/pacar sekarang dan ss ke pemain','pap ke salah satu anggota grup','Bilang "KAMU CANTIK BANGET NGGAK BOHONG" ke cowo','ss recent call whatsapp','drop emot "💨" setiap ngetik di gc/pc selama 1 hari','kirim voice note bilang can i call u baby?','drop kutipan lagu/quote, terus tag member yang cocok buat kutipan itu','pake foto sule sampe 3 hari','ketik pake bahasa daerah 24 jam','ganti nama menjadi "gue anak lucinta luna" selama 5 jam','chat ke kontak wa urutan sesuai %batre kamu, terus bilang ke dia "i lucky to hv you','Pesan makanan di aplikasi, dan kasih makanan yang kamu pesan ke pengantar itu.','Aku tantang kamu untuk kirim foto selfie ke crush, tunggu sampai dibuka dan kirim buktinya ke aku.','bilang "i hv crush on you, mau jadi pacarku gak?" ke lawan jenis yang terakhir bgt kamu chat (serah di wa/tele), tunggu dia bales, kalo udah ss drop ke sini','Rekam diri kamu sendiri saat menyanyikan sebuah lagu dan posting di YouTube atau media sosialmu','Campurkan setetes atau satu sendok dari setiap bumbu di rumah kamu dan minum/makanlah.','teriak gajelas lalu kirim pake vn kesini','pap mukamu lalu kirim ke salah satu temanmu','Lakukan panggilan prank ke seseorang.','Rekam video kamu sedang melakukan tarian gila dan unggah ke media sosial.','teriak "WOI" di depan rumah mu','ganti nama jadi " BOWO " selama 24 jam','Pura pura kerasukan, contoh : kerasukan maung, kerasukan belalang, kerasukan kulkas, dll','teriak "GUE ANAK LUCINTA LUNA" didepan rumah AKWOWKOK','Berjalan mengelilingi kompleks perumahan kamu dan berbicara sendiri sepanjang waktu, terutama saat lagi banyak orang di sekitar kamu.','Pejamkan mata dan raih lemari es atau dapur. Hal pertama yang kamu sentuh, harus kamu makan.','Kirimkan tangkapan layar pesanmu dengan orang terakhir selain aku.']
+              const der = dare[Math.floor(Math.random() * dare.length)]
+              buffer = await getBuffer(`https://i.ibb.co/305yt26/bf84f20635dedd5dde31e7e5b6983ae9.jpg`)
+              pemuda.sendMessage(from, buffer, image, { quoted: mek, caption: '*Dare*\n\n'+ der })
+              break
 // MINI GAMES
 // HERO \\
 
@@ -4335,7 +4564,6 @@ break
 case 'cecanrandom':
 reply(mess.wait)
 ini = await fetchJson(`https://zeroyt7-api.herokuapp.com/api/asupan/cecan?apikey=${zerkey}`)
-reply(mess.wait)
 buffer = await getBuffer(ini.result.url)
 xbot.sendMessage(from, buffer, image, {quoted: fvid, caption: ''})
 break
